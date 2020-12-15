@@ -4,8 +4,9 @@ from .query_resource_points import get_resource_map_mes,get_resource_list_mes,up
 
 sv = Service("原神资源查询")
 
-@sv.on_suffix(('在哪', '在哪里', '哪有', '哪里有'))
-@sv.on_prefix(('哪有', '哪里有'))
+# @sv.on_suffix(('在哪', '在哪里', '哪有', '哪里有'))
+# @sv.on_prefix(('哪有', '哪里有'))
+@sv.on_prefix(('资源搜索 '))
 async def inquire_resource_points(bot, ev):
 
     resource_name = ev.message.extract_plain_text().strip()
