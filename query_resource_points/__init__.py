@@ -38,7 +38,7 @@ async def inquire_resource_list(bot , ev):
     resource_pic = f"[CQ:image,file=file:///{root}//hoshino//modules//Genshin_Impact_bot//query_resource_points//resource_pic.png]"
     await bot.send(ev, resource_pic)
 
-@sv.on_fullmatch('刷新原神资源列表')
+@sv.on_fullmatch('刷新资源列表')
 async def inquire_resource_list(bot , ev):
     up_label_and_point_list()
     await bot.send(ev, '刷新成功', at_sender=True)

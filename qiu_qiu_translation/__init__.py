@@ -27,10 +27,3 @@ async def qiu_qiu(bot, ev):
     mes = qiu_qiu_phrase_translation(txt)
     mes += suffix
     await bot.send(ev, mes,at_sender=True)
-
-
-
-
-
-
-
