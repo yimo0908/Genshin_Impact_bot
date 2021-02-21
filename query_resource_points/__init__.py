@@ -1,14 +1,16 @@
 import os
+
 from hoshino import Service
-from .query_resource_points import get_resource_map_mes,get_resource_list_mes,up_label_and_point_list
+
+from .query_resource_points import get_resource_map_mes, get_resource_list_mes, up_label_and_point_list
 
 sv = Service("原神资源查询")
+
 
 # @sv.on_suffix(('在哪', '在哪里', '哪有', '哪里有'))
 # @sv.on_prefix(('哪有', '哪里有'))
 @sv.on_prefix(('资源搜索 '))
 async def inquire_resource_points(bot, ev):
-
     resource_name = ev.message.extract_plain_text().strip()
     if resource_name == "":
         return
@@ -16,9 +18,8 @@ async def inquire_resource_points(bot, ev):
     await bot.send(ev, get_resource_map_mes(resource_name), at_sender=True)
 
 
-
 @sv.on_fullmatch('原神资源列表')
-async def inquire_resource_list(bot , ev):
+async def inquire_resource_list(bot, ev):
     # 长条消息经常发送失败，所以只能这样了
     # mes_list = []
     # txt_list = get_resource_list_mes().split("\n")
@@ -35,11 +36,11 @@ async def inquire_resource_list(bot , ev):
     # await bot.send(ev, get_resource_list_mes(), at_sender=True)
     # await bot.send_group_forward_msg(group_id=ev['group_id'], messages=mes_list)
     root = os.getcwd()
-    resource_pic = f"[CQ:image,file=file:///{root}//hoshino//modules//Genshin_Impact_bot//query_resource_points//resource_pic.png]"
+    resource_pic = f"[CQ:image,file=file:///{root}//hoshino//modules//Genshin_Impact_bot//query_resource_points//resource_pic.jpg]"
     await bot.send(ev, resource_pic)
 
+
 @sv.on_fullmatch('刷新资源列表')
-async def inquire_resource_list(bot , ev):
+async def inquire_resource_list(bot, ev):
     up_label_and_point_list()
     await bot.send(ev, '刷新成功', at_sender=True)
-
